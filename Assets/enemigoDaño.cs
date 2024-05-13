@@ -6,16 +6,19 @@ public class enemigoDaño : MonoBehaviour
 {
     [SerializeField] private GameObject efecto;
     private Animator animator;
+    [SerializeField] private AudioClip audio1;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+        private void OnCollisionEnter2D(Collision2D other)
     {
+        
         if (other.gameObject.CompareTag("Player"))
         {
+            
             foreach (ContactPoint2D punto in other.contacts)
             {
                 if (punto.normal.y <= -0.9)
@@ -33,9 +36,10 @@ public class enemigoDaño : MonoBehaviour
         }
     }
 
-    private void Golpe()
+    public void Golpe()
     {
         Instantiate(efecto, transform.position, transform.rotation);
+        ControladorSonidos.Instance.EjecutarSonido(audio1);
         Destroy(gameObject);
     }
 }

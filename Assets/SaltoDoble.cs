@@ -63,6 +63,13 @@ public class SaltoDoble : MonoBehaviour
         salto = false;
     }
 
+    public void AgregarSaltosExtra(int cantidad)
+    {
+        saltosExtra += cantidad;
+        fuerzaSalto = 10;
+        Debug.Log("Saltos extra restantes: " + saltosExtraRestantes);
+    }
+
     private void OnDrawGizmos(){
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireCube(controladorSuelo.position, dimensionesCaja);
